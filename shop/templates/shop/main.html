@@ -1,0 +1,53 @@
+{% extends 'shop/base.html' %}
+{% load static from staticfiles %}
+
+
+
+<title>{% block title %}Купівля насіння та саджанців квітів{% endblock title %}</title>
+
+    {% block content %}
+    {% if request.GET.status_message %}
+          <div class="alert alert-warning" role="alert">{{ request.GET.status_message }}</div>
+    {% else %}
+    <div class="alert alert-warning">
+       {% if buy_status %}
+       В кошику {{count}} {{ fl_count }}. <a href='{% url "basket" %}' class="buy_ajax">Переглянути їх?</a>
+      {% else %}
+      Для замовлення будь-ласка натисніть на кнопку "купити", а після цього перейдіть в закладку "кошик", де зможити оформити замовлення!
+      {% endif %}
+    {% endif %}
+</div>
+
+{% if user.is_authenticated %}
+<a class='btn btn-primary btn1' href='{% url "flower_add" %}'>додати квітку</a>
+{% endif %}
+
+
+    <!-- Start Listing -->
+    <div class='row main_list'>
+
+      {% for fl in flowers %}
+      <div class="col-md-3 lot">
+                <div class="thumbnail">
+                <div class="title_lot"><h4>{{ fl.title }}</h4></div>
+                    <img src="{{ fl.photo_main.url }}" alt="">
+                    <div class="caption">
+                        <div id='price_buy'>{{ fl.price }} грн
+            <button class='to_basket' value='{{ fl.lat_title }}'>Купити</button></div>
+            <div id='reade_more'><a href="{% url "one_flower" fl.id %}">Читати
+більше...</a></div>
+                    </div>
+                </div>
+            </div>
+      {% endfor %}
+
+
+    </div>
+    {% endblock content %}
+
+
+
+
+
+
+

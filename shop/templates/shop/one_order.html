@@ -1,0 +1,28 @@
+{% extends 'shop/base.html' %}
+{% load static from staticfiles %}
+
+<title>{% block title %}Купівля насіння та саджанців квітів{% endblock title %}</title>
+
+
+{% block content %}
+    
+{% for order in order %}
+ <div id='one_order'>
+
+  <div class="ord_one_col">{{ order.name }}</div>
+  <div class="ord_one_col">{{ order.number }}</div>
+  <div class="ord_one_col">{{ order.body }}</div>
+  <div class="ord_one_col">{{ order.syma }}</div>
+  <div class="ord_one_col">{{ order.notes }}</div>
+
+ </div>
+{% endfor %}
+
+{% endblock content %}
+    
+
+
+
+
+  	
+  	

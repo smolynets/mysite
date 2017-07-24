@@ -1,0 +1,123 @@
+{% extends 'shop/base.html' %}
+{% load static from staticfiles %}
+
+
+
+<title>{% block title %}Купівля насіння та саджанців квітів{% endblock title %}</title>
+
+
+{% block content %}
+
+
+{% if flowers %}
+<div class='row'>
+<div id='form_confirm'>
+<form action="{% url "order_confirm" %}" method="post"
+enctype="multipart/form-data" role="form" class="form-horizontal">
+
+{% csrf_token %}
+
+<h2 id='confirm_title'>Оформлення замовлення</h2>
+
+
+
+<div id='basket_details'>
+<div class="row">
+  <div class="col-sm-2">Назва</div>
+  <div class="col-sm-2 price_title">Ціна</div>
+</div>
+{% for fl in flowers %}
+<div class="one_confirm">
+<div class="row">
+  <div class="col-sm-2">{{ fl.title }}</div>
+  <div class="col-sm-3 one_price">{{ fl.price }} грн</div>
+  <div><button class='from_basket' value='{{ fl.lat_title }}'>Видалити
+  </button>
+  </div>
+</div>
+</div>
+{% endfor %}
+<div id='suma_form'>
+<div class="row">
+Сума замовлення  {{price_list}} грн
+</div>
+</div>
+</div>
+
+
+
+<div class="form-group">
+  <label class="col-sm-2 control-label">Імя*</label>
+  <div class="col-sm-10">
+    <input type="text" value="{{ request.POST.name }}"
+      name="name" class="form-control" />
+      <span class="help-block">{{ errors.name }}</span>
+  </div>
+</div>
+
+
+
+<div class="form-group">
+  <label class="col-sm-2 control-label">номер телефону*</label>
+  <div class="col-sm-10">
+    <input type="text" value="{{ request.POST.number }}"
+      name="number" class="form-control" />
+      <span class="help-block">{{ errors.number }}</span>
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="col-sm-2 control-label">Додаткові нотатки</label>
+  <div class="col-sm-10">
+    <textarea name="notes" id="notes" class="form-control"></textarea>
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="col-sm-2 control-label"></label>
+  <div class="col-sm-10">
+    <textarea type="text" value=""
+      name="body" class="form-control sr-only" readonly>{% for fl in flowers %}
+      {{ fl.title }}  {{ fl.price }}грн;
+      {% endfor %}</textarea
+  </div>
+</div>
+
+</div>
+
+
+<div class="row">
+ <label class="col-sm-2 control-label"></label>
+ <div class="col-sm-10">
+   <input type="submit" value="замовити" name="add_button"
+     class="btn btn-primary from_basket"
+     {% if errors %}
+     {% else %}
+     class='from_basket'
+     {% endif %}
+      />
+   <button type="submit" name="cancel_button"
+     class="btn btn-link">Скасувати</button>
+ </div>
+</div>
+ 
+</div>
+</form>
+</div>
+
+
+{% else %}
+ <div class="alert alert-warning">
+ Ви не вибрали жодного товару. Будь-ласка, поверніться на <a href='{% url 'main' %}' class="btn btn-link">головну сторінку</a> і виберіть хоча б одну квітку!
+ </div>
+ {% endif %}
+
+{% endblock content %}
+
+
+    
+
+
+
+
+    

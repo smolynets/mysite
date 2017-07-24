@@ -1,0 +1,72 @@
+{% extends 'shop/base.html' %}
+{% load static from staticfiles %}
+
+
+
+<title>{% block title %}Купівля насіння та саджанців квітів{% endblock title %}</title>
+
+
+{% block content %}
+{% if flowers %}
+
+
+
+
+<form action="{% url "basket" %}" method="post"
+enctype="multipart/form-data" role="form" class="form-horizontal" id='myform'>
+
+{% csrf_token %}
+
+<h2 id='basket_title'>В кошику</h2>
+
+
+
+<div>
+ <table class="table">
+
+  <thead>
+   <tr>
+    <th>Назва</th>
+    <th>Ціна</th>
+   </tr>
+  </thead>
+
+  <tbody>
+  {% for fl in flowers %}
+  <tr>
+   <td>{{ fl.title }}</td>
+   <td>{{ fl.price }} грн</td>
+   </tr>
+  {% endfor %}
+  </tbody>
+ </table>
+ </div>
+ 
+<div id='basket_button'>
+ <a href='{% url 'main' %}' class="btn btn-link">повернутись</a>
+ <a href='{% url 'order_confirm' %}' class="btn btn-link">замовити</a>
+</div>
+
+</form>
+
+
+
+{% else %}
+ <div class="alert alert-warning">
+ Ви не вибрали жодного товару
+ </div>
+
+ {% endif %}
+
+
+ 
+
+{% endblock content %}
+
+
+    
+
+
+
+
+    
