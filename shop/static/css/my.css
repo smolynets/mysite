@@ -7,6 +7,7 @@
 	height: 450px;
 	margin-top: 50px;
 	margin-bottom: 50px;
+	margin-left: 50px;
 
 }
 
@@ -26,7 +27,8 @@
 .title_lot{
 	margin-bottom: 20px;
 	margin-top: 30px;
-	margin-left: 0px;
+	text-align: center;
+        height: 20px;
 }
 
 .prise_lot{
@@ -89,7 +91,7 @@ footer {
 }
 
 #price_buy{
-	margin-top: 10px;
+	margin-top: 20px;
 }
 
 
@@ -132,7 +134,7 @@ footer {
 
 .to_basket{
 	margin-left: 120px;
-	margin-top: 20;
+        margin-top: 0px;
 }
 
 .to_buy{
