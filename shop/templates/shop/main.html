@@ -28,12 +28,12 @@
    <div class='row col-xs-10 col-xs-offset-1'>
 
       {% for fl in flowers %}
-     <div class="col-md-3 lot">
+     <div class="col-xs-3 lot">
                 <div class="thumbnail">
                     <img src="{{ fl.photo_main.url }}" alt="">
                     <div class="title_lot"><h4>{{ fl.title }}</h4></div>
                     <div class="caption">
-                        <div id='price_buy'>{{ fl.price }} грн
+                        <div id='price_buy'>ціна  {{ fl.price }} грн
             <button class='to_basket' value='{{ fl.lat_title }}'>Купити</button></div>
             <div id='reade_more'><a href="{% url "one_flower" fl.id %}">Читати 
 більше...</a></div>
